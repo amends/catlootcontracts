@@ -240,7 +240,6 @@ contract CatLoot is ERC721Enumerable, ReentrancyGuard, Ownable {
     }
     
     function pluck(uint256 tokenId, string memory keyPrefix, string[] memory sourceArray) internal view returns (string memory) {
-        uint256 _currentSupply = totalSupply().sub(1);
         require(tokenId < _currentSupply, "CatLoot not minted yet");
         
         uint256 rand = random(string(abi.encodePacked(keyPrefix, toString(tokenId))));
