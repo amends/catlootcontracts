@@ -345,7 +345,6 @@ contract CatLoot is ERC721Enumerable, ReentrancyGuard, Ownable {
     }
     
     constructor() ERC721("CatLoot", "CATLOOT") Ownable() {
-        require(msg.sender != address(0)), "Dev would be 0 address!")
         devAddr = payable(msg.sender);
     }
 }
