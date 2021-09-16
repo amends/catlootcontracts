@@ -200,47 +200,39 @@ contract CatLoot is ERC721Enumerable, ReentrancyGuard, Ownable {
     }
     
     function getWeapon(uint256 tokenId) public view returns (string memory) {
-        uint256 _currentSupply = totalSupply().sub(1);
         return pluck(tokenId, "WEAPON", weapons);
     }
     
     function getFur(uint256 tokenId) public view returns (string memory) {
-        uint256 _currentSupply = totalSupply().sub(1);
         return pluck(tokenId, "FUR", catFur);
     }
     
     function getHead(uint256 tokenId) public view returns (string memory) {
-        uint256 _currentSupply = totalSupply().sub(1);
         return pluck(tokenId, "HEAD", headArmor);
     }
     
     function getWaistYarn(uint256 tokenId) public view returns (string memory) {
-        uint256 _currentSupply = totalSupply().sub(1);
         return pluck(tokenId, "WAISTYARN", waistYarn);
     }
 
     function getFootBooties(uint256 tokenId) public view returns (string memory) {
-        uint256 _currentSupply = totalSupply().sub(1);
         return pluck(tokenId, "BOOTIES", footBooties);
     }
     
     function getCatAccessory(uint256 tokenId) public view returns (string memory) {
-        uint256 _currentSupply = totalSupply().sub(1);
         return pluck(tokenId, "ACCESSORY", catAccessory);
     }
     
     function getNeck(uint256 tokenId) public view returns (string memory) {
-        uint256 _currentSupply = totalSupply().sub(1);
         return pluck(tokenId, "NECK", necklaces);
     }
     
     function getEarring(uint256 tokenId) public view returns (string memory) {
-        uint256 _currentSupply = totalSupply().sub(1);
         return pluck(tokenId, "EARRING", earrings);
     }
     
     function pluck(uint256 tokenId, string memory keyPrefix, string[] memory sourceArray) internal view returns (string memory) {
-        require(tokenId < _currentSupply, "CatLoot not minted yet");
+        require(tokenId < totalSupply(), "CatLoot not minted yet");
         
         uint256 rand = random(string(abi.encodePacked(keyPrefix, toString(tokenId))));
         string memory output = sourceArray[rand % sourceArray.length];
